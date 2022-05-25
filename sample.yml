@@ -1,0 +1,18 @@
+name: Auto-Merge
+on:
+  pull_request_target:
+    branches:
+      - main
+      - master
+
+jobs:
+  enable-auto-merge:
+    if: github.event.pull_request.user.login == 'sprocket-github'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Enable Auto Merge
+      uses: amcdevitt/enable-github-automerge-action@v1.1.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        merge-method: "REBASE"
+        
